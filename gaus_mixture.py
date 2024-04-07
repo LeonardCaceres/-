@@ -1,18 +1,3 @@
-import numpy as np
-from scipy.stats import multivariate_normal
-
-def multivariate_normal_pdf(X, mean, cov):
-    d = len(mean)
-    det_cov = np.linalg.det(cov)
-    inv_cov = np.linalg.inv(cov)
-
-    factor = 1 / (np.sqrt((2 * np.pi)**d * det_cov))
-
-    diff = X - mean
-    exponent = np.exp(-0.5 * np.sum(diff @ inv_cov * diff, axis=1))
-
-    return factor * exponent
-
 def em_clustering(data, n_clusters = 3, max_iter=100, tol=1e-4):
     np.random.seed(42)
     n_samples, n_features = data.shape
